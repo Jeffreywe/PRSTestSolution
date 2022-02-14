@@ -22,11 +22,11 @@ namespace PRSLibrary.Models {
         public string Status { get; set; }
         [Column(TypeName = "decimal(11,2)")]
         public decimal Total { get; set; }
-        public int UserId { get; set; }
 
-        public Request() { 
-            
-        }
+        public int UserId { get; set; }
+        public virtual User User { get; set; }
+
+        public Request() { }
         
     }
 }

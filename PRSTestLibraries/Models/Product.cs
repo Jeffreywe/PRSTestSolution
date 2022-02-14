@@ -18,8 +18,16 @@ namespace PRSLibrary.Models {
         public decimal Price { get; set; }
         [Required, StringLength(30)]
         public string Unit { get; set; }
+        [StringLength(255)]
+        public string PhotoPath { get; set; }
+
         public int VendorId { get; set; }
+        // virtual instance required for EF to,
+        // recognize FK
+        public virtual Vendor Vendor { get; set; }
 
         public Product() { }
+        
+        
     }
 }
