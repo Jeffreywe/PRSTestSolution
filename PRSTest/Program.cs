@@ -20,6 +20,7 @@ namespace TestPRSLibrary {
             };
             userCtrl.Create(newUser); // calls our Create method in our controller
 */
+
             //reads users in the list
             var user3 = userCtrl.GetByPk(3);
             if(user3 is null) {
@@ -27,6 +28,12 @@ namespace TestPRSLibrary {
             } else {
                 Console.WriteLine($"User3: {user3.Firstname} {user3.Lastname}");
             }
+            //updates a user
+            //user3.Lastname = "User3";
+            //userCtrl.Change(user3);
+
+
+            //reads users in lists
             var user33 = userCtrl.GetByPk(33);
             if (user33 is null) {
                 Console.WriteLine("User not found!");
@@ -34,10 +41,13 @@ namespace TestPRSLibrary {
                 Console.WriteLine($"User33: {user33.Firstname} {user33.Lastname}");
             }
 
+            //removes a user, Id has to be valid
+            userCtrl.Remove(4);
+
             var users = userCtrl.GetAll(); // calls the GetAll method in our controller
             
             foreach(var user in users) {
-                Console.WriteLine($"{user.Firstname} {user.Lastname}" );
+                Console.WriteLine($"{user.Id} {user.Firstname} {user.Lastname}" );
             }
         }
     }

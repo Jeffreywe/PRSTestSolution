@@ -50,5 +50,19 @@ namespace PRSLibrary.Controllers {
             _context.SaveChanges();
             return user;
         }
+        //update
+        public void Change(User user) {
+            _context.SaveChanges(); // all thats needed because above statements
+        }
+
+        //delete
+        public void Remove(int id) { // our method and its body
+            var user = _context.Users.Find(id); // finds that theres a valid id, if not throws exceptions
+            if(user is null) {
+                throw new Exception("User not found!");
+            }
+            _context.Users.Remove(user); // removes the user/row
+            _context.SaveChanges(); // commits changes to database
+        }
     }
 }
