@@ -14,7 +14,38 @@ namespace PRSLibrary.Controllers {
         public RequestsController(PRSDbContext context) {
             _context = context;
         }
+        //STATUS METHODS
 
+        //returns collection of requests like get all
+        public IEnumerable<Request> GetRequestsInReview(int userId) {
+                var requests = _context.Requests
+                                            .Where(x => x.Status == "REVIEW"
+                                                && x.UserId != userId)
+                                            .ToList();
+            return requests;
+        }
+
+        //sets status of a reques to REJECTED
+        public void SetRejected(Request request) {
+            request.Status = "REJECTED";
+            Change(request);
+        }
+        //sets status of a Request to Approved
+        public void SetApproved(Request request) {
+            request.Status = "APPROVED";
+            Change(request); 
+        }
+        //sets status of a Request to Approved, or Review
+        public void SetReview(Request request) {
+            if(request.Total <= 50) {
+                request.Status = "APPROVED";
+            } else {
+                request.Status = "REVIEW";
+            }
+            Change(request); // calls the add to database method to reduce writing code
+        }
+
+        //basic methods, basic minimum 5
         public IEnumerable<Request> GetAll() {
             return _context.Requests
                                 .Include(x => x.User)
