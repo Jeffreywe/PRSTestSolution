@@ -14,19 +14,65 @@ namespace TestPRSLibrary {
 
             var context = new PRSDbContext(); // creates context variable from PRSDbContext
 
-            var prodCtrl = new ProductsController(context);
+            var userCtrl = new UsersController(context);
 
-            var products = prodCtrl.GetAll();
+            var user = userCtrl.Login("sa", "sax");
 
-            foreach(var p in products) {
-                Print(p);
+            if(user is null) {
+                Console.WriteLine("User not found");
+            } else {
+                Console.WriteLine(user.Username);
             }
 
-            var product = prodCtrl.GetByPk(2);
 
-            if(product is not null) {
-                Print(product); // takes the variable and passes it into our Print method
-            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+            //ways to bring back username and password connected to a user, we put this inside of usercontroller
+            //var username = "gdoud";
+            //var password = "password";
+            //context.Users.SingleOrDefault(x => x.Username == username && x.Password == password); // && to connect row data in where statement
+
+            //var pu = from u in context.Users
+            //        where u.Username == username && u.Password == password
+            //        select u;
+                    
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            //PRODUCTS
+            //var prodCtrl = new ProductsController(context);
+
+            //var products = prodCtrl.GetAll();
+
+            //foreach(var p in products) {
+            //    Print(p);
+            //}
+
+            //var product = prodCtrl.GetByPk(2);
+
+            //if(product is not null) {
+            //    Print(product); // takes the variable and passes it into our Print method
+            //}
 
 
 

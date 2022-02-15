@@ -29,6 +29,13 @@ namespace PRSLibrary.Controllers {
             this._context = context; // takes this variable and puts it into _context
         }
 
+        // new method for User, to login connecting username and password
+        public User Login(string username, string password) {
+            return _context.Users
+                        .SingleOrDefault(x => x.Username == username
+                                            && x.Password == password);
+        }
+
         // the 2 read methods
         public IEnumerable<User> GetAll() {// means we can pass a list or an array, general interface method, means we can take things and return what we want, flexibility
             return _context.Users.ToList(); // converts to list
